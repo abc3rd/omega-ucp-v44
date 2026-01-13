@@ -1,0 +1,18 @@
+cd ~/syncloud-ucp
+
+# 1. Create the configuration file for Cloudflare Pages
+cat << 'EOF' > wrangler.jsonc
+{
+  "name": "syncloud-ucp",
+  "compatibility_date": "2026-01-13",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS"
+  }
+}
+EOF
+
+# 2. Push the config to GitHub to trigger a fresh (successful) build
+git add wrangler.jsonc
+git commit -m "V44_INFRA: Adding wrangler config for Cloudflare Pages assets."
+git push origin main
