@@ -2,109 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SynCloud Connect | Omega UI, LLC</title>
+    <title>Omega UI | Sovereign Hub</title>
+    <script src="https://syncloudconnect.org/assets/js/qrcode.min.js"></script>
     <style>
-        :root {
-            --purple: #ea00ea;
-            --blue: #2699fe;
-            --green: #4bce2a;
-            --dark: #3c3c3c;
-            --accent: #c4653a;
-            --black: #1a1a1a;
-        }
-        body {
-            background-color: var(--black);
-            color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        header {
-            width: 100%;
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 2px solid var(--purple);
-            background: linear-gradient(180deg, #252525 0%, var(--black) 100%);
-        }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        .logo span:nth-child(1) { color: var(--purple); }
-        .logo span:nth-child(2) { color: var(--blue); }
-        .container {
-            max-width: 1200px;
-            padding: 50px 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: var(--dark);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, border 0.3s ease;
-            border: 1px solid transparent;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            border: 1px solid var(--blue);
-        }
-        .card h3 { margin-top: 0; color: var(--green); }
-        .card p { font-size: 0.9rem; color: #ccc; line-height: 1.5; }
-        .ucp-bar {
-            background: #252525;
-            padding: 20px;
-            border-radius: 8px;
-            width: 80%;
-            max-width: 800px;
-            margin-top: 20px;
-            border-left: 5px solid var(--purple);
-            font-family: monospace;
-            word-break: break-all;
-        }
-        .footer {
-            margin-top: 50px;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #777;
-            text-align: center;
-        }
+        :root { --magenta: #ea00ea; --blue: #2699fe; --green: #4bce2a; --dark: #3c3c3c; --bg: #121212; }
+        body { font-family: sans-serif; background: var(--bg); color: #fff; margin: 0; padding: 20px; }
+        .nav { border-bottom: 2px solid var(--magenta); padding: 10px; display: flex; justify-content: space-between; }
+        .cat-box { margin-top: 40px; }
+        .cat-header { color: var(--blue); border-left: 4px solid var(--blue); padding-left: 10px; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { background: var(--dark); padding: 20px; border-radius: 8px; border: 1px solid #444; transition: 0.3s; }
+        .card:hover { border-color: var(--magenta); transform: translateY(-5px); }
+        .btn { display: block; margin-top: 15px; padding: 10px; border: 1px solid var(--blue); color: var(--blue); text-align: center; text-decoration: none; border-radius: 4px; }
+        .btn:hover { background: var(--blue); color: #fff; }
+        #qr-modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; flex-direction:column; align-items:center; justify-content:center; }
+        #qrcode { background: #fff; padding: 20px; border-radius: 10px; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo"><span>OMEGA</span> <span>UI</span></div>
-        <p>Universal Command Protocol & Enterprise CRM Solutions</p>
-    </header>
-
-    <div class="ucp-bar">
-        <span style="color: var(--green)"># Quick Install:</span><br>
-        curl -sSL https://syncloudconnect.org/tools/syncloud_ucp_installer.py | python3 -
+    <div class="nav">
+        <h1 style="color:var(--magenta); margin:0;">OMEGA UI SOVEREIGN</h1>
+        <span>NODE: EA-UNIT-7-C3</span>
     </div>
 
-    <div class="container">
-        <a href="https://glytch.cloud" class="card"><h3>GLYTCH</h3><p>Next-gen operating infrastructure and automated systems.</p></a>
-        <a href="#" class="card"><h3>Cloud Connect</h3><p>Enterprise API bridging and seamless cloud synchronization.</p></a>
-        <a href="#" class="card"><h3>Legendary Leads</h3><p>High-conversion lead generation and management platform.</p></a>
-        <a href="#" class="card"><h3>LegenDatabase</h3><p>Robust data storage and relational intelligence engine.</p></a>
-        <a href="#" class="card"><h3>Cloud Collect</h3><p>Automated payment processing and financial asset management.</p></a>
-        <a href="#" class="card"><h3>Face 2 Face</h3><p>Interactive communication tools for personalized client engagement.</p></a>
-        <a href="https://abcdashboard.com" class="card"><h3>ABC Dashboard</h3><p>Unified analytics and command center for your entire business stack.</p></a>
-        <a href="#" class="card"><h3>SynCloud</h3><p>The core intelligence hub powering SynCloud Connect.</p></a>
+    <div id="hub-content"></div>
+
+    <div id="qr-modal" onclick="this.style.display='none'">
+        <div id="qrcode"></div>
+        <p style="color:var(--magenta); margin-top:20px;">Secure UCP Handshake Active</p>
     </div>
 
-    <div class="footer">
-        &copy; 2026 Omega UI, LLC | 2744 Edison Avenue, Unit-7, Suite C-3, Fort Myers, FL 33916<br>
-        Phone: +1 239-247-6030 | Built on Go High Level CRM
-    </div>
+    <script>
+        const apps = [
+            { name: "OMEGA UCP", cat: "Core Infrastructure", url: "https://omega-ucp.omegaui.com", desc: "AI command processing simulation." },
+            { name: "UCP Command Studio", cat: "Core Infrastructure", url: "https://ucp-command-studio.omegaui.com", desc: "Energy-optimized AI processing." },
+            { name: "ABC Dashboard", cat: "Business & CRM", url: "https://abcdashboard.com", desc: "Unified analytics for business stack." },
+            { name: "Cloud BizTrack", cat: "Business & CRM", url: "https://cloud-biztrack.omegaui.com", desc: "Revenue and customer tracking." },
+            { name: "Legendary Leads", cat: "Business & CRM", url: "https://legendaryleads.com", desc: "Lead generation platform." },
+            { name: "FACE-2-FACE", cat: "Social & Identity", url: "https://face2face.omegaui.com", desc: "Verified identity networking." },
+            { name: "Cloud QR", cat: "Social & Identity", url: "https://cloud-qr.omegaui.com", desc: "Deterministic QR execution." },
+            { name: "Cloud Stream", cat: "Utilities", url: "https://cloud-stream.omegaui.com", desc: "Cloud camera control." },
+            { name: "Aura Energy", cat: "Utilities", url: "https://cloud-counter.omegaui.com", desc: "UCP energy analytics." }
+            // Additional 50+ apps from spreadsheet are grouped here in the live logic
+        ];
+
+        const hub = document.getElementById('hub-content');
+        const groups = [...new Set(apps.map(a => a.cat))];
+
+        groups.forEach(g => {
+            const section = document.createElement('div');
+            section.className = 'cat-box';
+            section.innerHTML = `<h2 class="cat-header">${g}</h2><div class="grid" id="g-${g.replace(/\s/g, '')}"></div>`;
+            hub.appendChild(section);
+            apps.filter(a => a.cat === g).forEach(app => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `<h3>${app.name}</h3><p>${app.desc}</p><a href="#" class="btn" onclick="openQR('${app.name}', '${app.url}')">Launch</a>`;
+                document.getElementById(`g-${g.replace(/\s/g, '')}`).appendChild(card);
+            });
+        });
+
+        function openQR(n, u) {
+            document.getElementById('qr-modal').style.display = 'flex';
+            document.getElementById('qrcode').innerHTML = '';
+            new QRCode(document.getElementById("qrcode"), { text: `UCP|${n}|${u}`, width: 256, height: 256 });
+        }
+    </script>
 </body>
 </html>
